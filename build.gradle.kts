@@ -12,7 +12,7 @@ repositories {
 allprojects {
 
     group = "io.github.olxmute"
-    version = "0.0.1-SNAPSHOT"
+    version = "0.0.2"
 
     repositories {
         mavenCentral()
