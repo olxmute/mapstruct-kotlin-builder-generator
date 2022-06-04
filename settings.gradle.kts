@@ -1,4 +1,4 @@
-rootProject.name = "kotlin-mapstruct-builder"
+rootProject.name = "mapstruct-kotlin-builder-generator"
 
 include(
     "processor",
