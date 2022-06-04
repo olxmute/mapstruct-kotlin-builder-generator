@@ -5,6 +5,7 @@ import io.github.olxmute.processor.isDataClass
 import org.mapstruct.ap.spi.BuilderInfo
 import org.mapstruct.ap.spi.BuilderProvider
 import org.mapstruct.ap.spi.DefaultBuilderProvider
+import org.mapstruct.ap.spi.TypeHierarchyErroneousException
 import javax.lang.model.element.ElementKind
 import javax.lang.model.element.PackageElement
 import javax.lang.model.element.TypeElement
@@ -18,14 +19,15 @@ class KotlinBuilderProvider : DefaultBuilderProvider(), BuilderProvider {
 
     override fun findBuilderInfo(type: TypeMirror?): BuilderInfo? {
         val typeElement = getTypeElement(type) ?: return null
-
-        val builder = if (typeElement.isDataClass()) findBuilder(typeElement) else null
-
-        return builder ?: super.findBuilderInfo(typeElement)
+        return if (typeElement.isDataClass()) {
+            findBuilder(typeElement)
+        } else {
+            super.findBuilderInfo(typeElement)
+        }
     }
 
     private fun findBuilder(typeElement: TypeElement): BuilderInfo? {
-        val builderTypeElement = asBuilderElement(typeElement) ?: return null
+        val builderTypeElement = asBuilderElement(typeElement) ?: throw TypeHierarchyErroneousException(typeElement)
 
         val builderMethods = ElementFilter.methodsIn(builderTypeElement.enclosedElements)
             .filter { CREATE_METHOD_NAME == it?.simpleName?.toString() }
