@@ -11,8 +11,8 @@ repositories {
 
 allprojects {
 
-    group = "com.github.olxmute"
-    version = "1.0-SNAPSHOT"
+    group = "io.github.olxmute"
+    version = "0.0.1-SNAPSHOT"
 
     repositories {
         mavenCentral()

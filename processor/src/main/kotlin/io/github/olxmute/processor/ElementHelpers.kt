@@ -1,4 +1,4 @@
-package com.github.olxmute.processor
+package io.github.olxmute.processor
 
 import com.squareup.javapoet.ClassName
 import com.squareup.javapoet.TypeName

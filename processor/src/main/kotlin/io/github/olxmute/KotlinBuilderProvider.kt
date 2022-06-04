@@ -1,4 +1,4 @@
-package com.github.olxmute
+package io.github.olxmute
 
 import com.google.auto.service.AutoService
 import org.mapstruct.ap.spi.BuilderInfo
