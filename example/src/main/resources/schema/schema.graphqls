@@ -1,0 +1,26 @@
+type RoleDto {
+    name: String
+    abbreviation: String
+}
+
+type PersonDto {
+    firstName: String
+    lastName: String
+    phone: String
+    age: Int
+    role: RoleDto
+}
+
+type DepartmentDto {
+    name: String
+    code: String
+}
+
+type CourseDto {
+    id: ID!
+    name: String
+    description: String
+    teacher: PersonDto
+    students: [PersonDto]
+    department: DepartmentDto
+}
