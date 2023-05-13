@@ -27,6 +27,7 @@ class BuilderProcessor : AbstractProcessor() {
         val types = roundEnv.getElementsAnnotatedWith(Class.forName("org.mapstruct.Mapper") as Class<Annotation>)
             .asSequence()
             .flatMap { ElementFilter.methodsIn(it.enclosedElements) }
+            .filter { it.returnType is DeclaredType }
             .map { it.returnType as DeclaredType }
             .map { it.asElement() as TypeElement }
             .filter { it.isDataClass() }
